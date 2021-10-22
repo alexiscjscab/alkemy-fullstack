@@ -13,12 +13,15 @@ import {Link} from 'react-router-dom';
 const links = [
     {
         text: 'Home',
+        link: 'home'
     },
     {
-        text: 'Add Operation'
+        text: 'Add Operation',
+        link: 'add'
     },
     {
-        text: 'All Operations'
+        text: 'All Operations',
+        link: 'all'
     }
 ];
 
@@ -37,7 +40,7 @@ const NavBar = () => {
                             links.map((item,index) => (
                                 <Link
                                     key={index}
-                                    to={item.text}
+                                    to={item.link}
                                 >
                                 {item.text}
                                 </Link>
