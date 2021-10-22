@@ -1,31 +1,56 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios'
 
-import CardCtn from './styledCard'
+import CardCtn, {Button} from './styledCard';
+import { useDispatch } from 'react-redux';
+import { getOperation } from '../../actions/actions';
 
 
-const Card = ({
-    amount, concept,date,type,id
-}) => {
+
+
+
+
+
+const Card = ({amount, concept, date, type, id}) => {
+
+    const dispatch = useDispatch();
+
+    const deleteOperation = async(id) => {
+        await axios.delete(`http://localhost:4000/${id}`)
+        dispatch(getOperation())
+    }
+
     return (
         <CardCtn>
-            <div className="concept">
-                <p>Concept: </p>
-                <p>{concept} </p>
-                <p>Date: </p>
-                <p>{date}</p>
-            </div>
-            
+
             <div className='amount'>
-                <p>Amount: </p>
-                <p>${amount} </p>
-                <p>Type:</p>
-                <p>{type}</p>
+                <h3> Amount: </h3>
+                <p> ${amount} </p>
             </div>
 
+            <div className="concept">
+                <h3> Concept: </h3>
+                <p>{concept} </p>
+                
+            </div>
+            
+            <div className='date'>
+                <h3> Date: </h3>
+                <p> {date}</p>
+            </div>
+            
+            <div className='type'>
+                <h3> Type: </h3>
+                <p> {type} </p>
+            </div>
+            
+
             <div className='id'>
-                <span>Edit</span>
-                <span> Remove</span>
-                <p>{id}</p>
+                <Button color={false}> Edit </Button>
+                <Button 
+                    color={true}
+                    onClick={() => deleteOperation(id)}> Delete
+                </Button>
             </div>
         </CardCtn>
     )
