@@ -1,4 +1,7 @@
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+
+
 
 
 
@@ -6,7 +9,8 @@ import {Route} from 'react-router-dom';
 const App = () => {
   return (
     <div>
-      <Route exact path='/'>
+      <Route path = '/' component={NavBar}/>
+      <Route exact path='/home'>
         <h2> Challenge Alkemy </h2>
       </Route>
     </div>
