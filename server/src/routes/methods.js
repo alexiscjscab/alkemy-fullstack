@@ -23,6 +23,24 @@ router.get('/', async (req,res) => {
     }
 });
 
+router.get('/:id', async (req,res) => {
+    const {id} = req.params
+    try{
+        const operation = await Operation.findByPk(id)
+        
+        console.log(operation)
+        
+        res.json({
+            data: operation
+        })
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(400)
+    }
+})
+
+
 router.post('/', async (req,res) => {
     try{
         const {concept, amount, date, type} = req.body;
