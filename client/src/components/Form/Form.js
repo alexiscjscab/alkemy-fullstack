@@ -11,7 +11,7 @@ const Form = () => {
     const [concept, setConcept] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('Expenses');
     const [error, setError] = useState('');
     
     const dispatch = useDispatch();
@@ -45,6 +45,11 @@ const Form = () => {
             setError('empty fields')
         }
     };
+
+
+    const changeRadio = e => {
+        setType(e.target.value)
+    }
 
     return (
         <div style={{display: 'flex',justifyContent: 'center', marginTop: '20px'}}>
@@ -88,16 +93,26 @@ const Form = () => {
 
                 <div className='type'>
                     <label>Type: </label>
-                    <input
-                        type='text'
-                        placeholder='Type'
-                        value={type}
-                        onChange={(e) => setType(e.target.value)}
-                        required
-                    />
+                    
+                        <span>Expenses</span>
+                        <input
+                            type="radio" 
+                            id='radio1' 
+                            value="Expenses" 
+                            checked={type === 'Expenses' ? true: false} 
+                            onChange={changeRadio}
+                            
+                         />
+                        <span>Income</span>
+                        <input 
+                            type="radio" 
+                            id='radio2' 
+                            value="Income" 
+                            checked={type === 'Income' ? true :false}
+                            onChange = {changeRadio}
+                            />
                 </div>
 
-                
                 <div className='send-button'>
                     <input
                         type='submit'

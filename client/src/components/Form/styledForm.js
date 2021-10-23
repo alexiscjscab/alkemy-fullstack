@@ -5,10 +5,17 @@ const FormCtn = styled.form`
     flex-direction: column;
     background: rgb(34,137,195);
     background: linear-gradient(70deg, rgba(34,137,195,1) 10%, rgba(45,227,253,1) 60%);
-    height: 70vh;
     width: 370px;
     padding: 10px;
     margin-top: 50px;
+
+        span{
+            font-size: 22px;
+            font-weight: 300;
+        }
+
+        
+
 
         h2{
             text-align: center;
@@ -26,7 +33,7 @@ const FormCtn = styled.form`
             font-weight: bold;
         }
     
-        input{
+        input[type=text],input[type=number],input[type=date]{
             outline: 0px;
             font-size: 20px;
             background: transparent;
@@ -73,9 +80,10 @@ const FormCtn = styled.form`
 
     .send-button{
         text-align: center;
-        margin-top: 50px;
-
+        margin-top: 10px;
+        margin-bottom: 20px;
         input{
+            font-size: 22px;
             padding: 10px;
             width:50%;
             background: #000;
@@ -85,6 +93,7 @@ const FormCtn = styled.form`
             cursor: pointer;
             text-transform: uppercase;
             transition: all 0.5s ease-in-out;
+            
             &:hover{
                 background: #fff;
                 color: #000;
