@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
-import Home from './components/Home/Home'
-
+import Home from './components/Home/Home';
+import Form from './components/Form/Form';
 
 
 const App = () => {
@@ -9,10 +9,13 @@ const App = () => {
 
   return (
     <div>
+    
       <Route path = '/' component={NavBar}/>
 
-      <Route exact path='/home' component={Home}>
-      </Route>
+      <Route exact path='/home' component={Home}/>
+      
+      <Route exact path='/add' component={Form}/>
+
     </div>
   )
 }
