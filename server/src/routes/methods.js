@@ -24,8 +24,8 @@ router.get('/', async (req,res) => {
 });
 
 router.get('/:id', async (req,res) => {
-    const {id} = req.params
     try{
+        const {id} = req.params
         const operation = await Operation.findByPk(id)
         
         console.log(operation)
