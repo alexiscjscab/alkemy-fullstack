@@ -67,13 +67,14 @@ router.post('/', async (req,res) => {
 
 router.put('/', async (req,res) => {
     try{
-        const {id, concept, amount, date} = req.body;
+        const {id, concept, amount, date, type} = req.body;
 
         const operation = await Operation.update(
             {
                 concept,
                 amount,
-                date
+                date,
+                type
             },
             {where: {id}}
         )
