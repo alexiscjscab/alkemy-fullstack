@@ -11,6 +11,9 @@ const CardCtn = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
+    a{
+        text-decoration: none
+    }
 
     &:hover{
         box-shadow: 2px 2px 20px rgba(30,50,170,0.66)
@@ -58,6 +61,7 @@ export const Button = styled.button`
     background: ${props => props.color ? 'rgba(243, 32, 19,1)' : 'rgba(7, 129, 255, 1)'};
     font-size: 17px;
     font-weight: 700;
+    cursor: pointer;
     &:hover{
         border: 2px solid #fff;
         color: #fff;

@@ -40,7 +40,7 @@ const NavBar = () => {
                             links.map((item,index) => (
                                 <Link
                                     key={index}
-                                    to={item.link}
+                                    to={`${item.link}`}
                                 >
                                 {item.text}
                                 </Link>

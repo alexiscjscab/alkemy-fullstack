@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { getOperation } from '../../actions/actions';
 import axios from 'axios'
 
-
 import CardCtn, {Button} from './styledCard';
+import { Link } from 'react-router-dom';
 
 
 
@@ -19,6 +19,8 @@ const Card = ({amount, concept, date, type, id}) => {
         await axios.delete(`http://localhost:4000/${id}`)
         dispatch(getOperation())
     }
+
+   
 
     return (
         <CardCtn>
@@ -46,7 +48,14 @@ const Card = ({amount, concept, date, type, id}) => {
             
 
             <div className='id'>
-                <Button color={false}> Edit </Button>
+                
+                <Link to={`/edit/${id}`}>
+                <Button 
+                    color={false}
+                    // onClick={() => EditRoute(id)}
+                    >Edit 
+                </Button>
+                </Link>
                 <Button 
                     color={true}
                     onClick={() => deleteOperation(id)}> Delete

@@ -1,5 +1,6 @@
 const initialState = {
-    operation : []
+    operation : [],
+    operationID  : []
 };
 
 const rootReducer = (state = initialState, {type, payload}) => {
@@ -10,7 +11,12 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 operation : payload.data
             }
-    
+
+        case 'GET_OPERATION_PK':
+            return{
+                ...state,
+                operationID : payload.data
+            }    
         default:
             return state;
     }
