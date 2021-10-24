@@ -14,7 +14,17 @@ const FormCtn = styled.form`
             font-weight: 300;
         }
 
-        
+        a{
+            text-align: center;
+            text-decoration: none;
+            margin: 10px 0 20px 0;
+            color: #000;
+            font-size: 22px;
+            transition: all 0.5s ease-in-out;
+            &:hover{
+                color: #fff;
+            }
+        }
 
 
         h2{

@@ -38,7 +38,7 @@ const Card = ({amount, concept, date, type, id}) => {
             
             <div className='date'>
                 <h3> Date: </h3>
-                <p> {date}</p>
+                <p> {date.slice(0,10)}</p>
             </div>
             
             <div className='type'>
@@ -50,11 +50,7 @@ const Card = ({amount, concept, date, type, id}) => {
             <div className='id'>
                 
                 <Link to={`/edit/${id}`}>
-                <Button 
-                    color={false}
-                    // onClick={() => EditRoute(id)}
-                    >Edit 
-                </Button>
+                    <Button>Edit</Button>
                 </Link>
                 <Button 
                     color={true}

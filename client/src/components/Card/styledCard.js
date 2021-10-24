@@ -57,14 +57,17 @@ export const Button = styled.button`
     width: 220px;
     margin: 5px;
     padding: 5px;
-    outline: none;
+    outline: 0;
     background: ${props => props.color ? 'rgba(243, 32, 19,1)' : 'rgba(7, 129, 255, 1)'};
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    border-radius: 50px;
     &:hover{
         border: 2px solid #fff;
         color: #fff;
         background: ${props => props.color ? 'rgba(243, 32, 19,0.5)' : 'rgba(7, 129, 255, 0.5)'};
     }
+
 `

@@ -16,7 +16,6 @@ const Edit = ({match}) => {
     const [concept, setConcept] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
-    const [type, setType] = useState('Expenses');
     const [edit, setEdit] = useState(null)
 
     const [error, setError] = useState('');
@@ -24,7 +23,6 @@ const Edit = ({match}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     
-    console.log(operation)
     useEffect(() => {
         dispatch(getOperationByPk(id))
         const modEdit = () => {
@@ -38,7 +36,6 @@ const Edit = ({match}) => {
             if(operation !== []){
                 setAmount(operation.amount)
                 setConcept(operation.concept)
-                setType(operation.type)
                 setEdit(null)
             }
         }
@@ -52,13 +49,11 @@ const Edit = ({match}) => {
             id,
             concept,
             date,
-            type,
             amount
         }
-        if(concept.trim() !== '' || amount.trim() !== '' || date.trim() !== '' || type.trim() !== ''){
+        if(concept.trim() !== '' || amount.trim() !== '' || date.trim() !== ''){
             await axios.put(`http://localhost:4000/`,dataBase);
             dispatch(getOperation());
-            alert('push')
             setError(null)
             setTimeout(() => {
                 history.push('/home')
@@ -66,11 +61,6 @@ const Edit = ({match}) => {
         }else{
             setError('Empty Fields')
         }
-    }
-
-
-    const changeRadio = e => {
-        setType(e.target.value)
     }
 
     return (
@@ -113,28 +103,6 @@ const Edit = ({match}) => {
                     />
                 </div>
 
-                <div className='type'>
-                    <label>Type: </label>
-                    
-                        <span>Expenses</span>
-                        <input
-                            type="radio" 
-                            id='radio1' 
-                            value="Expenses" 
-                            checked={type === 'Expenses' ? true: false} 
-                            onChange={changeRadio}
-                            
-                         />
-                        <span>Income</span>
-                        <input 
-                            type="radio" 
-                            id='radio2' 
-                            value="Income" 
-                            checked={type === 'Income' ? true :false}
-                            onChange = {changeRadio}
-                            />
-                </div>
-
                 <div className='send-button'>
                     <input
                         type='submit'
@@ -143,7 +111,7 @@ const Edit = ({match}) => {
 
                 </div>
 
-                <Link to='/home'>home </Link>
+                <Link to='/home'> HOME </Link>
 
                 {
                     error ? (

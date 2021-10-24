@@ -1,11 +1,11 @@
 const Router = require('express');
-const {Operation} = require('../db');
-const {v4:uuidv4} = require('uuid');
+const { Operation } = require('../db');
+const { v4: uuidv4 } = require('uuid');
 
 const router = Router();
 
-router.get('/', async (req,res) => {
-    try{
+router.get('/', async (req, res) => {
+    try {
         const operation = await Operation.findAll({
             limit: 10,
             order: [["createdAt", "DESC"]]
@@ -14,36 +14,36 @@ router.get('/', async (req,res) => {
         console.log(operation)
 
         res.json({
-            data:operation
+            data: operation
         })
 
-    }catch(e){
+    } catch (e) {
         console.log(e)
         res.sendStatus(400)
     }
 });
 
-router.get('/:id', async (req,res) => {
-    try{
-        const {id} = req.params
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
         const operation = await Operation.findByPk(id)
-        
+
         console.log(operation)
-        
+
         res.json({
             data: operation
         })
 
-    }catch(e){
+    } catch (e) {
         console.log(e)
         res.sendStatus(400)
     }
 })
 
 
-router.post('/', async (req,res) => {
-    try{
-        const {concept, amount, date, type} = req.body;
+router.post('/', async (req, res) => {
+    try {
+        const { concept, amount, date, type } = req.body;
 
         const operation = await Operation.create({
             concept,
@@ -59,50 +59,49 @@ router.post('/', async (req,res) => {
             data: operation
         })
 
-    }catch(e){
+    } catch (e) {
         console.log(e)
         res.sendStatus(400)
     }
 });
 
-router.put('/', async (req,res) => {
-    try{
-        const {id, concept, amount, date, type} = req.body;
+router.put('/', async (req, res) => {
+    try {
+        const { id, concept, amount, date } = req.body;
 
         const operation = await Operation.update(
             {
                 concept,
                 amount,
                 date,
-                type
             },
-            {where: {id}}
+            { where: { id } }
         )
 
         console.log(operation)
 
         res.sendStatus(200);
 
-    }catch(e){
+    } catch (e) {
         console.log(e);
         res.sendStatus(400);
     }
-    
+
 });
 
-router.delete('/:id', async (req,res) => {
-    try{
-        const {id} = req.params;
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
 
-        const operation  = await Operation.destroy({
-            where : {id}
+        const operation = await Operation.destroy({
+            where: { id }
         })
 
         console.log(operation)
 
         res.sendStatus(200)
 
-    }catch(e){
+    } catch (e) {
         console.log(e);
         res.sendStatus(400);
     }
