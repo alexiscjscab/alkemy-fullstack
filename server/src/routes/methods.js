@@ -9,12 +9,43 @@ router.get('/', async (req, res) => {
         const operation = await Operation.findAll({
             limit: 10,
             order: [["createdAt", "DESC"]]
-        })
+        });
 
-        console.log(operation)
+        console.log(operation);
 
+        const calculateBalance = (operation) => {
+            let income = 0;
+            let expenses = 0;
+
+            operation.map((item) => {
+                
+                if(item.type === 'Income'){
+                    income += item.amount;
+                }else if(item.type === 'Expenses'){
+                    expenses += item.amount;
+                }
+            });
+
+            const balance = income - expenses;
+
+            const balanceObj = {
+                income,
+                expenses,
+                balance
+            };
+            
+            return balanceObj
+        };
+
+        const total = calculateBalance(operation);
+
+        console.log('INCOME ', total.income);
+        console.log('EXPENSES ', total.expenses);
+        console.log('TOTAL BALANCE ', total.balance);
+        
         res.json({
-            data: operation
+            data: operation,
+            balance: total
         })
 
     } catch (e) {
