@@ -1,6 +1,7 @@
 const initialState = {
     operation : [],
-    operationID  : []
+    operationID  : [],
+    balance: []
 };
 
 const rootReducer = (state = initialState, {type, payload}) => {
@@ -9,7 +10,8 @@ const rootReducer = (state = initialState, {type, payload}) => {
         case 'GET_OPERATION':
             return{
                 ...state,
-                operation : payload.data
+                operation : payload.data,
+                balance : payload.balance
             }
 
         case 'GET_OPERATION_PK':

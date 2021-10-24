@@ -53,7 +53,7 @@ const Card = ({amount, concept, date, type, id}) => {
                     <Button>Edit</Button>
                 </Link>
                 <Button 
-                    color={true}
+                    color='true'
                     onClick={() => deleteOperation(id)}> Delete
                 </Button>
             </div>

@@ -2,15 +2,18 @@ import styled from "styled-components";
 
 const CardCtn = styled.div`
     padding: 10px;
-    width: 220px;
+    width: 200px;
     height: 320px;
-    margin: 20px;
-    background: #d1abd1;
+    margin: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    background: rgb(170,139,251);
+    background: linear-gradient(90deg, rgba(170,139,251,1) 28%, rgba(98,88,173,1) 104%);
+
     a{
         text-decoration: none
     }
@@ -32,7 +35,7 @@ const CardCtn = styled.div`
         font-size: 18px;
         p{
             font-weight: 500;
-            color: #fafafa
+            color: #222
         }
     }
 
@@ -54,7 +57,7 @@ export default CardCtn
 
 export const Button = styled.button`
     display: block;
-    width: 220px;
+    width: 180px;
     margin: 5px;
     padding: 5px;
     outline: 0;

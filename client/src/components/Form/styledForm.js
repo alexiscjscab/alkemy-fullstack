@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const FormCtn = styled.form`
     display: flex;
     flex-direction: column;
-    background: rgb(34,137,195);
-    background: linear-gradient(70deg, rgba(34,137,195,1) 10%, rgba(45,227,253,1) 60%);
+    background: rgb(170,139,251);
+    background: linear-gradient(90deg, rgba(170,139,251,1) 28%, rgba(98,88,173,1) 104%);
     width: 370px;
     padding: 10px;
     margin-top: 50px;

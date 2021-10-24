@@ -3,11 +3,11 @@ import styled from 'styled-components'
 const Nav = styled.div `
     
     .appbar{
-        background-color: #000;
+        background: rgb(170,139,251);
+        background: linear-gradient(90deg, rgba(170,139,251,1) 28%, rgba(98,88,173,1) 104%);
         top: 0;
         left: 0;
         right: 0;
-        color:  #fff;
         height: 60px;
     };
 
@@ -19,12 +19,12 @@ const Nav = styled.div `
 
     a{
         text-decoration: none;
-        color: #fff;
+        color: #000;
         font-size: 24px;
         margin: 10px;
         &:hover{
-            color: #ddd;
-            border-bottom: 2px solid #ddd
+            color: #333;
+            border-bottom: 2px solid #333
         }
     }
 `
