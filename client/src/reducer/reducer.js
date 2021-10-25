@@ -19,6 +19,25 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 operationID : payload.data
             }    
+
+        case 'SELECT_INCOME':
+
+            let income = payload.data.filter((item) => item.type === 'Income');
+
+            return {
+                ...state,
+                operation: income
+            }
+        
+        case 'SELECT_EXPENSES':
+            
+            let expenses = payload.data.filter((item) => item.type === 'Expenses')    
+
+            return {
+                ...state,
+                operation: expenses
+            }
+
         default:
             return state;
     }
