@@ -33,12 +33,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 // para relacionarlo
-const {Operation} = sequelize.models;
+const { Operation, Category } = sequelize.models;
 
 // Relaciones example
-
 // Product.hasMany(Reviews);
 
+Operation.belongsToMany(Category, {through: "operation_category"});
+Category.belongsToMany(Operation, {through: "operation_category"});
 
 
 module.exports = {

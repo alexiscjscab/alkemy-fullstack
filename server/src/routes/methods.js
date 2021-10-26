@@ -1,5 +1,5 @@
 const Router = require('express');
-const { Operation } = require('../db');
+const { Operation, Category } = require('../db');
 const { v4: uuidv4 } = require('uuid');
 
 const router = Router();
@@ -25,6 +25,9 @@ router.get('/', async (req, res) => {
                     expenses += item.amount;
                 }
             });
+
+
+            
 
             const balance = income - expenses;
 
@@ -74,21 +77,34 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { concept, amount, date, type } = req.body;
+        const { concept, amount, date, type,category } = req.body;
 
         const operation = await Operation.create({
             concept,
             amount,
             date,
             type,
-            id: uuidv4()
-        })
+            id: uuidv4(),
+        });
 
-        console.log(operation)
+        
+        for(let i = 0; i < category.length; i++) {
+            console.log(category[i]);
+            let idCategory = await Category.findAll({
+                where: {
+                    name: category[i]
+                },
+                attributes: ['id']
+            })
 
+            operation.addCategory(idCategory);
+        }
+        
         res.json({
             data: operation
-        })
+        });
+
+
 
     } catch (e) {
         console.log(e)
@@ -125,7 +141,9 @@ router.delete('/:id', async (req, res) => {
         const { id } = req.params;
 
         const operation = await Operation.destroy({
-            where: { id }
+            where: { 
+                id:id 
+            }
         })
 
         console.log(operation)
