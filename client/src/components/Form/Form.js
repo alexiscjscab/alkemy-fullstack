@@ -94,6 +94,7 @@ const Form = () => {
                         value={concept}
                         onChange={(e) => setConcept(e.target.value)}
                         required
+                        maxLength={50}
                     />
                 </div>
 

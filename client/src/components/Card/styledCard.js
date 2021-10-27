@@ -27,6 +27,7 @@ const CardCtn = styled.div`
     }
     .concept{
         margin: 5px 0 5px 0;
+        height: 80px;
     }
     
     .amount{
