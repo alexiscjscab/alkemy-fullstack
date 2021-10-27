@@ -6,23 +6,29 @@ const {Category} = require('./src/db');
 const category = [
     {
         id: 1,
-        name: 'Comida'
+        name: 'Food'
     },
     {
         id: 2,
-        name: 'Servicios'
+        name: 'Services'
     },
     {
         id: 3,
-        name: 'Vestimenta'
+        name: 'Clothing'
     },
     {
         id: 4,
-        name: 'Sueldo'
+        name: 'Salary'
     },
     {
         id: 5,
-        name: 'Educacion'
+        name: 'Education'
+    },{
+        id: 6,
+        name: 'Sports'
+    },{
+        id: 7,
+        name: 'Leisure'
     }
 ];
 

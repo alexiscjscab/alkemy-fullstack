@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
     try {
         const operation = await Operation.findAll({
             limit: 10,
-            order: [["createdAt", "DESC"]]
+            order: [["createdAt", "DESC"]],
+            include: [Category]
         });
 
         console.log(operation);
