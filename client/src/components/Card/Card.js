@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const Card = ({amount, concept, date, type, id}) => {
+const Card = ({amount, concept, date, type, id, category}) => {
 
     const dispatch = useDispatch();
 
@@ -29,7 +29,7 @@ const Card = ({amount, concept, date, type, id}) => {
 
             <div className="concept">
                 <h3> Concept: </h3>
-                <p>{concept} </p>
+                <p> {concept} </p>
                 
             </div>
             
@@ -42,6 +42,16 @@ const Card = ({amount, concept, date, type, id}) => {
                 <h3> Type: </h3>
                 <p> {type} </p>
             </div>
+            
+            
+                
+            <div className='category'>
+                <h3> Category </h3>
+                <p> {category}</p>
+            </div>
+            
+            
+            
             
 
             <div className='id'>

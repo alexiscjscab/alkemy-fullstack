@@ -3,7 +3,6 @@ import styled from "styled-components";
 const CardCtn = styled.div`
     padding: 10px;
     width: 200px;
-    height: 320px;
     margin: 5px;
     display: flex;
     flex-direction: column;
@@ -41,15 +40,19 @@ const CardCtn = styled.div`
 
     .date{
         margin: 5px 0 5px 0;
-        color: #000
     }
 
     .type{
         margin: 5px 0 5px 0;
     }
 
-    .id{
-        margin: 10px 0 10px 0;
+    .category{
+        margin: 5px 0 5px 0;
+        p{
+            margin-top: 5px;
+            color : #222;
+            font-weight: 600;
+        }
     }
 `
 

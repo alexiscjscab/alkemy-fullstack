@@ -36,6 +36,7 @@ const Cards = () => {
                                 id={operation.id}
                                 concept={operation.concept}
                                 type={operation.type}
+                                category={operation.categories[0].name}
                             />
                         ))
                     }

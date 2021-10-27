@@ -15,7 +15,11 @@ const Select = styled.div`
     .selects{
         background-color: transparent;
         color: #000;
-        border: thin solid #000;
+        border: none;
+        /* background: rgb(170,139,251);
+        background: linear-gradient(90deg, rgba(170,139,251,1) 28%, rgba(98,88,173,1) ); */
+        /* border: thin solid #000; */
+        border-bottom: 1px solid #000;
         margin-right: 20px;
         margin-left: 20px;
         outline: 0px;
@@ -23,10 +27,19 @@ const Select = styled.div`
         font-weight: bold;
         font-family: 'Georama', sans-serif;
     }
+    select{
+        border-radius: 10px;
+        padding: 5px;
+    }
 
-    .selects  option{
-        background-color: #666;
+    option{
         font-weight: bold;
+        background: #6189aa;
+        border: none;
+        border-radius: 100px;
+        margin: 100px;
+        
+        
     }
 
     span{

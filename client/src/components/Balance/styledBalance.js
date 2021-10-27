@@ -41,6 +41,18 @@ const BalanceCtn = styled.div`
             margin-bottom: 5px;
         }
     }
+
+    .red{
+        color: rgba(200,30,30);
+    }
+
+    .blue{
+        color: rgba(30,30,200);
+    }
+
+    .green{
+        color: rgba(30,200,30);
+    }
 `
 
 export default BalanceCtn

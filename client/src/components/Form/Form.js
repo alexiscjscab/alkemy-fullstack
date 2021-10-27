@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import FormCtn from './styledForm';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { getOperation} from '../../actions/actions';
-import {useHistory} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { useHistory } from 'react-router-dom';
 import Select from '../Filter/styledFilter';
 
 
@@ -15,17 +15,28 @@ const Form = () => {
     const [type, setType] = useState('Expenses');
     const [error, setError] = useState('');
     const [selec, setSelec] = useState([])
-    
 
-    const dispatch = useDispatch();
+
     const history = useHistory();
 
-    const category = useSelector (state => state.category)
+    const category = useSelector(state => state.category)
 
-    const Send = async(e) => {
+    const Send = async (e) => {
         e.preventDefault()
-        
-        if(concept.trim() !== '' || amount.trim() !== '' || date.trim() !== '' || type.trim() !== ''){
+
+        if (concept.trim() !== '' && amount.trim() !== '' && date.trim() !== '' && type.trim() !== '') {
+
+            if (selec.length === 0) {
+                setError('Add Category')
+                return
+            }
+
+            // max value integer DataBase
+            if (amount > 2147483647) {
+                setError('Max Valor Amount')
+                return
+            }
+
             const dataBase = {
                 concept: concept.trim(),
                 amount: amount.trim(),
@@ -33,10 +44,9 @@ const Form = () => {
                 type: type.trim(),
                 category: selec
             }
-            await axios.post(`http://localhost:4000/api/`,dataBase);
-            dispatch(getOperation());
-            
-            
+            await axios.post(`http://localhost:4000/api/`, dataBase);
+
+
             setTimeout(() => {
                 setConcept('');
                 setAmount('');
@@ -44,19 +54,20 @@ const Form = () => {
                 setType('');
                 setError(null);
                 history.push('/home')
-            },1500)
+            }, 1500)
 
-        }else{
-            setError('empty fields')
+        } else {
+            setError('Empty Fields')
         }
     };
 
     const changeSelect = (e) => {
         const value = e.target.value
-        if(value === "Category"){
+        if (value === "Category") {
             return
-        }else{
+        } else {
             setSelec([value])
+            setError(null)
         }
     }
 
@@ -65,14 +76,12 @@ const Form = () => {
     }
 
     const deleteKey = (key) => {
-        
-        let update = selec.filter(x => selec[key] !== x);
-        setSelec(update);
-        
+        let deleteCategory = selec.filter(x => selec[key] !== x);
+        setSelec(deleteCategory);
     }
 
     return (
-        <div style={{display: 'flex',justifyContent: 'center', marginTop: '20px'}}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
             <FormCtn onSubmit={Send}>
 
                 <h2> Add Operation </h2>
@@ -93,7 +102,8 @@ const Form = () => {
                     <input
                         type='number'
                         placeholder='Amount'
-                        min = '0'
+                        min='0'
+                        max='2147483647'
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         required
@@ -113,49 +123,49 @@ const Form = () => {
 
                 <div className='type'>
                     <label>Type: </label>
-                    
-                        <span>Expenses</span>
-                        <input
-                            type="radio" 
-                            id='radio1' 
-                            value="Expenses" 
-                            checked={type === 'Expenses' ? true: false} 
-                            onChange={changeRadio}
-                            
-                         />
-                        <span>Income</span>
-                        <input 
-                            type="radio" 
-                            id='radio2' 
-                            value="Income" 
-                            checked={type === 'Income' ? true :false}
-                            onChange = {changeRadio}
-                            />
+
+                    <span>Expenses</span>
+                    <input
+                        type="radio"
+                        id='radio1'
+                        value="Expenses"
+                        checked={type === 'Expenses' ? true : false}
+                        onChange={changeRadio}
+
+                    />
+                    <span>Income</span>
+                    <input
+                        type="radio"
+                        id='radio2'
+                        value="Income"
+                        checked={type === 'Income' ? true : false}
+                        onChange={changeRadio}
+                    />
                 </div>
 
                 <Select>
-                    {!category?null:
-                            <select className='selects' onChange={changeSelect} required>
-                                <option key={-1} value={"Category"}>Category</option>
-                                {
-                                    category.map((item, index) => (
-                                        <option 
-                                            key={index} 
-                                            value={item}>{item}
-                                        </option>
+                    {!category ? null :
+                        <select className='selects' onChange={changeSelect} required>
+                            <option key={-1} value={"Category"}>Category</option>
+                            {
+                                category.map((item, index) => (
+                                    <option
+                                        key={index}
+                                        value={item}>{item}
+                                    </option>
                                 ))
                             }
                         </select>
                     }
                     {
-                    selec.map((item, index) => (
-                        <div key={index}>
-                            <span>{item}</span>
-                            <span className='delete' onClick={(key) => deleteKey(index)}>X</span>
-                        </div>
-                    ))
+                        selec.map((item, index) => (
+                            <div key={index}>
+                                <span>{item}</span>
+                                <span className='delete' onClick={(key) => deleteKey(index)}>X</span>
+                            </div>
+                        ))
                     }
- 
+
                 </Select>
                 <div className='send-button'>
                     <input
@@ -165,19 +175,19 @@ const Form = () => {
 
                 </div>
 
-                
 
-                
+
+
                 {
                     error ? (
                         <h4>{error} </h4>
-                    ) :  null
+                    ) : null
                 }
 
-                
+
 
             </FormCtn>
-            
+
         </div>
     )
 };
