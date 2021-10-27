@@ -8,15 +8,12 @@ import { Link } from 'react-router-dom';
 
 
 
-
-
-
 const Card = ({amount, concept, date, type, id}) => {
 
     const dispatch = useDispatch();
 
     const deleteOperation = async(id) => {
-        await axios.delete(`http://localhost:4000/${id}`)
+        await axios.delete(`http://localhost:4000/api/${id}`)
         dispatch(getOperation())
     }
 

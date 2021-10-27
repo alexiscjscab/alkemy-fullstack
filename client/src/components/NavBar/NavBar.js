@@ -19,10 +19,7 @@ const links = [
         text: 'Add Operation',
         link: 'add'
     },
-    {
-        text: 'All Operations',
-        link: 'all'
-    }
+
 ];
 
 

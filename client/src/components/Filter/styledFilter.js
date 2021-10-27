@@ -29,6 +29,17 @@ const Select = styled.div`
         font-weight: bold;
     }
 
+    span{
+        cursor: alias;
+    }
+    
+    .delete{
+        color : red;
+        margin-left: 10px;
+        cursor: pointer;
+        transform:scale(1.2)
+    }
+
 `;
 
 export default Select;

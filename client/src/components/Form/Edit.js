@@ -52,7 +52,7 @@ const Edit = ({match}) => {
             amount
         }
         if(concept.trim() !== '' || amount.trim() !== '' || date.trim() !== ''){
-            await axios.put(`http://localhost:4000/`,dataBase);
+            await axios.put(`http://localhost:4000/api/`,dataBase);
             dispatch(getOperation());
             setError(null)
             setTimeout(() => {

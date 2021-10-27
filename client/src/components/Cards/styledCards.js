@@ -7,6 +7,10 @@ const CardsCtn = styled.div `
     .ctn-grid{
         display: grid;
         grid-template-columns: 1fr 1fr;
+    
+        @media (max-width: 920px){
+            grid-template-columns: 1fr;
+        }
     }
 `
 

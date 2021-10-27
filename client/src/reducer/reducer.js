@@ -1,7 +1,8 @@
 const initialState = {
     operation : [],
     operationID  : [],
-    balance: []
+    balance: [],
+    category: undefined
 };
 
 const rootReducer = (state = initialState, {type, payload}) => {
@@ -37,6 +38,18 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 operation: expenses
             }
+
+        case 'GET_CATEGORY':
+            return {
+                ...state,
+                category: payload.data.map(item => item.name)
+            }
+
+        case 'BY_CATEGORY':
+            return{
+                ...state,
+                operation: payload.data
+            }    
 
         default:
             return state;

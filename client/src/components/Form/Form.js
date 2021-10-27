@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import FormCtn from './styledForm';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getOperation} from '../../actions/actions';
 import {useHistory} from 'react-router-dom';
+import Select from '../Filter/styledFilter';
 
 
 const Form = () => {
@@ -13,10 +14,13 @@ const Form = () => {
     const [date, setDate] = useState('');
     const [type, setType] = useState('Expenses');
     const [error, setError] = useState('');
+    const [selec, setSelec] = useState([])
     
+
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const category = useSelector (state => state.category)
 
     const Send = async(e) => {
         e.preventDefault()
@@ -26,9 +30,10 @@ const Form = () => {
                 concept: concept.trim(),
                 amount: amount.trim(),
                 date: date.trim(),
-                type: type.trim()
+                type: type.trim(),
+                category: selec
             }
-            await axios.post(`http://localhost:4000/`,dataBase);
+            await axios.post(`http://localhost:4000/api/`,dataBase);
             dispatch(getOperation());
             
             
@@ -46,9 +51,24 @@ const Form = () => {
         }
     };
 
+    const changeSelect = (e) => {
+        const value = e.target.value
+        if(value === "Category"){
+            return
+        }else{
+            setSelec([value])
+        }
+    }
 
     const changeRadio = e => {
         setType(e.target.value)
+    }
+
+    const deleteKey = (key) => {
+        
+        let update = selec.filter(x => selec[key] !== x);
+        setSelec(update);
+        
     }
 
     return (
@@ -113,6 +133,30 @@ const Form = () => {
                             />
                 </div>
 
+                <Select>
+                    {!category?null:
+                            <select className='selects' onChange={changeSelect} required>
+                                <option key={-1} value={"Category"}>Category</option>
+                                {
+                                    category.map((item, index) => (
+                                        <option 
+                                            key={index} 
+                                            value={item}>{item}
+                                        </option>
+                                ))
+                            }
+                        </select>
+                    }
+                    {
+                    selec.map((item, index) => (
+                        <div key={index}>
+                            <span>{item}</span>
+                            <span className='delete' onClick={(key) => deleteKey(index)}>X</span>
+                        </div>
+                    ))
+                    }
+ 
+                </Select>
                 <div className='send-button'>
                     <input
                         type='submit'
@@ -121,12 +165,16 @@ const Form = () => {
 
                 </div>
 
+                
 
+                
                 {
                     error ? (
                         <h4>{error} </h4>
                     ) :  null
                 }
+
+                
 
             </FormCtn>
             
